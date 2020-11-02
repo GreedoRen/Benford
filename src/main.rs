@@ -10,9 +10,14 @@ fn main() {
 
     for record in csv_reader.records() {
         let record = record.expect("Invalid record");
-        let city = record.get(0);
-        let population = record.get(1);
 
-        log::trace!("{:?} population: {:?}", city, population)
+        match record.get(1) {
+            Some(population) => log::trace!("Population: {}", population),
+            None => log::warn!("No population value!"),
+        };
+        // let city = record.get(0);
+        // let population = record.get(1);
+
+        // log::trace!("{:?} population: {:?}", city, population)
     }
 }
