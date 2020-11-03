@@ -1,23 +1,18 @@
 use std::fs;
 
-fn main() {    
+fn main() {
+    // initialize the logger implementation
     env_logger::init();
 
-    let dataset = "./census.csv";
-    println!("Reading dataset from{}", dataset);
+    let dataset = "datasets/census.csv";
+    log::info!("Reading dataset from {}", dataset);
     let file = fs::File::open(dataset).expect("Cannot read dataset");
-    let mut csv_reader = csv::Reader::from_reader(file);
+    let mut reader = csv::Reader::from_reader(file);
 
-    for record in csv_reader.records() {
+    log::info!("Parsing CSV records");
+    for record in reader.records() {
+        // record is a Result that we must unwrap before parsing its content
         let record = record.expect("Invalid record");
-
-        match record.get(1) {
-            Some(population) => log::trace!("Population: {}", population),
-            None => log::warn!("No population value!"),
-        };
-        // let city = record.get(0);
-        // let population = record.get(1);
-
-        // log::trace!("{:?} population: {:?}", city, population)
+        log::trace!("{:?}", record);
     }
 }
