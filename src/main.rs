@@ -1,18 +1,42 @@
+use std::collections::{BTreeMap, HashMap};
 use std::fs;
 
 fn main() {
-    // initialize the logger implementation
     env_logger::init();
 
-    let dataset = "datasets/census.csv";
+    let dataset = "./census.csv";
     log::info!("Reading dataset from {}", dataset);
     let file = fs::File::open(dataset).expect("Cannot read dataset");
     let mut reader = csv::Reader::from_reader(file);
 
+    let mut frequency = HashMap::new();
+
     log::info!("Parsing CSV records");
     for record in reader.records() {
-        // record is a Result that we must unwrap before parsing its content
         let record = record.expect("Invalid record");
-        log::trace!("{:?}", record);
+
+        if let Some(digit) = get_first_digit(&record) {
+            log::trace!("Found digit '{}' in {:?}", digit, record);
+            let count = frequency.entry(digit).or_insert(0);
+            *count += 1;
+        } else {
+            log::warn!("No valid digit found in {:?}", record);
+        }
     }
+    log::debug!("Frequency: {:?}", frequency);
+
+    let total: usize = frequency.values().sum();
+    let percentage: BTreeMap<char, f32> = frequency
+        .into_iter()
+        .map(|(digit, count)| (digit, count as f32 / total as f32))
+        .collect();
+    log::info!("Percentage: {:#.2?}", percentage);
+}
+
+fn get_first_digit(record: &csv::StringRecord) -> Option<char> {
+    log::trace!("Parsing record: {:?}", record);
+    record
+        .get(1)
+        .and_then(|population| population.chars().next())
+        .filter(|c| c.is_ascii_digit() && *c != '0')
 }
