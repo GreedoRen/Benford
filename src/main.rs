@@ -12,9 +12,7 @@ fn main() {
     let mut frequency = HashMap::new();
 
     log::info!("Parsing CSV records");
-    for record in reader.records() {
-        let record = record.expect("Invalid record");
-
+    for record in reader.records().filter_map(Result::ok) {
         if let Some(digit) = get_first_digit(&record) {
             log::trace!("Found digit '{}' in {:?}", digit, record);
             let count = frequency.entry(digit).or_insert(0);
