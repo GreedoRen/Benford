@@ -1,10 +1,14 @@
 use std::collections::{BTreeMap, HashMap};
-use std::fs;
+use std::{env, fs};
 
 fn main() {
     env_logger::init();
 
-    let dataset = "./census.csv";
+    let dataset = match env::args().nth(1) {
+        Some(path) => path,
+        _ => panic!("The path of the census file must be specified"),
+    };
+
     log::info!("Reading dataset from {}", dataset);
     let file = fs::File::open(dataset).expect("Cannot read dataset");
     let mut reader = csv::Reader::from_reader(file);
@@ -15,6 +19,7 @@ fn main() {
     for record in reader.records().filter_map(Result::ok) {
         if let Some(digit) = get_first_digit(&record) {
             log::trace!("Found digit '{}' in {:?}", digit, record);
+
             let count = frequency.entry(digit).or_insert(0);
             *count += 1;
         } else {
