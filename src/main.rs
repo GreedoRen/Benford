@@ -7,6 +7,8 @@ fn main() {
 
     let guess: u32 = "42".parse().expect("Not a number!");
 
+    let guess = guess + 22;
+
     println!("The value of x is: {}", x);
 
     println!("{}", guess);
