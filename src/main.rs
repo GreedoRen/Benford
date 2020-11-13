@@ -10,6 +10,7 @@ fn main() {
     let guess = guess + 22;
 
     let guess = "4".parse::<u32>();
+    let guess = "6".parse::<u32>();
 
     println!("The value of x is: {}", x);
 
