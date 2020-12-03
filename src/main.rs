@@ -33,5 +33,6 @@ fn main() {
     print!("The value of x, y, z is: {}, {}, {}", x, y, z);
 
     //array
-    let array = [1, 2, 3, 4, 5];
+    let array:[i32; 5] = [1, 2, 3, 4, 5];
+    let a = [3; 5]
 }
