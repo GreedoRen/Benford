@@ -24,4 +24,7 @@ fn main() {
     //boolean
     let t = true;
 
+    //char
+    let c = 'c';
+
 }
