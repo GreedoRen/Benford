@@ -26,5 +26,6 @@ fn main() {
 
     //char
     let c = 'c';
+    let cat = '😻';
 
 }
