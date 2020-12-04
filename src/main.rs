@@ -3,6 +3,7 @@ fn main() {
    let y = plus_one(1);
 
    println!("{}", x);
+   println!("{}", y);
 }
 
 fn five() -> i32 {
