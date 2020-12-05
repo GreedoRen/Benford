@@ -1,11 +1,10 @@
 fn main() {
-    let mut counter = 3;
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
 
-    while counter > 0 {
-        println!("{}", counter);
+    while index < 5 {
+        println!("The value is: {}", a[index]);
 
-        counter -= 1;
+        index += 1;
     }
-
-    println!("Stop")
 }
