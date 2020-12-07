@@ -6,6 +6,8 @@ fn main() {
     let x = 5;
 
     makes_copy(x);
+
+    //println!("{}, {}", s, x); // x -> s is no longer viable
 }
 
 fn takes_onwnership(some_string: String) {
