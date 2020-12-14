@@ -1,12 +1,25 @@
 fn main() {
-    let s = String::from("hello world");
+    let mut my_string = String::from("hello world");
 
-    let len = s.len();
+    let word = first_word(&my_string[..]);
 
-    let hello = &s[0..5];
-    let world = &s[6..11];
-    let slice_start = &s[..4];
-    let slice_end = &s[6..len];
+    let string_literal = "hello world";
 
-    println!("{}, {}, {}, {}", hello, world, slice_start, slice_end);
+    let word = first_word(&string_literal[..]);
+
+    let word = first_word(string_literal);
+
+    println!("the first word is: {}", word);
+}
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for(i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
