@@ -1,9 +1,12 @@
 fn main() {
     let s = String::from("hello world");
 
-    let hello = &s[0..5];
-    let world = &s[6..11]; 
-    let slice = &s[..4];
+    let len = s.len();
 
-    println!("{}, {}, {}", hello, world, slice);
+    let hello = &s[0..5];
+    let world = &s[6..11];
+    let slice_start = &s[..4];
+    let slice_end = &s[6..len];
+
+    println!("{}, {}, {}, {}", hello, world, slice_start, slice_end);
 }
