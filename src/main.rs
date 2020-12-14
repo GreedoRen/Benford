@@ -1,9 +1,5 @@
 fn main() {
-    let reference_to_nothing = dangle();
-}
+    let a = [1, 2, 3, 4, 5];
 
-fn dangle() -> String {
-    let s = String::from("hello");
-
-    s
+    let slice = &a[1..2];
 }
