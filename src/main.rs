@@ -11,6 +11,9 @@ fn main() {
         email: String::from("another_email@gmail.com"),
         ..user1
     };
+
+    let black = Color(0, 0, 0);
+    let origin = Point(-10, -10, -10);
 }
 
 struct User {
@@ -28,3 +31,7 @@ fn build_user(email: String, username: String) -> User {
         active: true,
     }
 }
+
+struct Color(u32, u32, u32);
+struct Point(i32, i32, i32);
+
