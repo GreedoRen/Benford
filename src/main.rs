@@ -11,5 +11,5 @@ fn main() {
         height: 50,
     };
 
-    println!("rec1 is {:?}", rect1);
+    println!("rec1 is {:#?}", rect1);
 }
