@@ -3,6 +3,11 @@ enum IpAddr {
     V6(String),
 }
 
+enum Option<T> {
+    Some(T), 
+    None,
+}
+
 fn main() {
     let home = IpAddr::V4(127, 0, 0, 1);
 
