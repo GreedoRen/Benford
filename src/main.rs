@@ -1,5 +1,10 @@
 fn main() {}
 
+enum UsState {
+    Alabama,
+    Alaska,
+}
+
 enum Coin {
     Penny,
     Nickel,
