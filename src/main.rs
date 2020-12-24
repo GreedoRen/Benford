@@ -3,6 +3,7 @@ fn main() {}
 enum UsState {
     Alabama,
     Alaska,
+    Arizona,
 }
 
 enum Coin {
