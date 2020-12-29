@@ -13,7 +13,10 @@ fn value_in_cents(coin: Coin) -> u8 {
             println!("Lucky penny!");
             1
         }
-        Coin::Nickel => 5,
+        Coin::Nickel => {
+            println!("Some metall");
+            5
+        }
         Coin::Dime => 10,
         Coin::Quarter => 25,
     }
